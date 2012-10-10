@@ -22,13 +22,12 @@ public class Customer {
     private String hashedPwd;
 
     
-    public Customer(int id, String name, String surname, String email, Car car, String pwd)
+    public Customer(int id, String name, String surname, String email, String pwd)
     {
         this.customerId = id;
         this.name = name;
         this.surname = surname;
         this.email = email;
-        cars.put(cars.size(), car);
         this.hashedPwd = pwd;
     }
     
@@ -45,8 +44,8 @@ public class Customer {
         return cars.get(carId).getPrice();
     }
     
-    public void addCar(Car car){
-        cars.put(cars.size(), car);        
+    public void addCar(int price, String description){
+        cars.put(cars.size(), new Car(cars.size(), price, description));        
     }
     
     public boolean checkPassword(String pwd)
