@@ -13,7 +13,7 @@ import java.awt.event.ActionListener;
  */
 public class SendClaimFormHandler {
     private SendClaimForm view;
-    private StorageBroker  storage;
+    private StorageBroker storage;
     
     public SendClaimFormHandler(SendClaimForm form){
         this.view = form;
