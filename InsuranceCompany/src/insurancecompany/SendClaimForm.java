@@ -4,6 +4,7 @@
  */
 package insurancecompany;
 
+import java.awt.event.ActionListener;
 import javax.swing.JOptionPane;
 
 /**
@@ -17,6 +18,18 @@ public class SendClaimForm extends javax.swing.JFrame {
      */
     public SendClaimForm() {
         initComponents();
+    }
+    
+    public void addButtonActionListener(ActionListener submitListener ){
+         sendBtn.addActionListener(submitListener);
+    }
+    
+    public int getCustomerId(){
+        return Integer.parseInt(this.customerIdTxt.getText());
+    }
+    
+    public int getDamageCost(){
+        return Integer.parseInt(this.damageCostTxt.getText());
     }
 
     /**
@@ -100,7 +113,7 @@ public class SendClaimForm extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+/*
     private void sendBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sendBtnActionPerformed
 
         try
@@ -115,7 +128,7 @@ public class SendClaimForm extends javax.swing.JFrame {
         }
         
     }//GEN-LAST:event_sendBtnActionPerformed
-
+*/
     /**
      * @param args the command line arguments
      */
