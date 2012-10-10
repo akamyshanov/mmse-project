@@ -20,7 +20,6 @@ public class StorageBroker {
         claimList = new ArrayList<Claim>();
         employeeList = new HashMap<Integer, Employee>();
         customerList = new HashMap<Integer, Customer>();
-
     }
     
     public void addClaim(Claim claim){
@@ -40,6 +39,8 @@ public class StorageBroker {
     {
         return employeeList.get(id);
     }
+    
+    
 
     
     
