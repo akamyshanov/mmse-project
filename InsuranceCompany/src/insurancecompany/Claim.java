@@ -9,6 +9,42 @@ package insurancecompany;
  * @author Andrew
  */
 public class Claim {
+
+    public int getId() {
+        return id;
+    }
+
+    public int getCustomerId() {
+        return customerId;
+    }
+
+    public int getCarPrice() {
+        return carPrice;
+    }
+
+    public int getDamageCost() {
+        return damageCost;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setCarPrice(int carPrice) {
+        this.carPrice = carPrice;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
+    }
     public enum Category
     {
         Undefined,
@@ -22,35 +58,13 @@ public class Claim {
     private int damageCost;
     private String description;
     private Category category;
-    
-    public Claim(int customerId, String description) {
-        this.id = 0;
+
+    public Claim(int customerId, int damageCost, String description) {
         this.customerId = customerId;
+        this.damageCost = damageCost;
         this.description = description;
-        this.category = Category.Undefined;
     }
 
-    public int getId() {
-        return id;
-    }
     
-    public void setId(int id) {
-        this.id = id;
-    }
     
-    public int getCustomerId() {
-        return customerId;
-    }
-
-    public void setCategory(Category category) {
-        this.category = category;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-    
-    public Category getCategory() {
-        return category;
-    }
 }

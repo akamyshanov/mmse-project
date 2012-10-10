@@ -24,9 +24,15 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" attributes="0">
+          <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="regBtn" max="32767" attributes="0"/>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="passwordTxt" max="32767" attributes="0"/>
+                  </Group>
                   <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="jLabel1" alignment="0" min="-2" max="-2" attributes="0"/>
@@ -37,16 +43,16 @@
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="carModel" max="32767" attributes="0"/>
-                          <Component id="name" alignment="0" max="32767" attributes="0"/>
-                          <Component id="surname" alignment="0" max="32767" attributes="0"/>
-                          <Component id="email" alignment="0" max="32767" attributes="0"/>
-                          <Component id="carPrice" pref="120" max="32767" attributes="0"/>
+                          <Component id="carModelTxt" max="32767" attributes="0"/>
+                          <Component id="nameTxt" alignment="0" max="32767" attributes="0"/>
+                          <Component id="surnameTxt" alignment="0" max="32767" attributes="0"/>
+                          <Component id="emailTxt" alignment="0" max="32767" attributes="0"/>
+                          <Component id="carPriceTxt" pref="120" max="32767" attributes="0"/>
                       </Group>
+                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                   </Group>
-                  <Component id="regBtn" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace max="32767" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -56,27 +62,32 @@
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="name" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="nameTxt" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="surname" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="surnameTxt" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="email" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="emailTxt" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="carModel" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="carModelTxt" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="carPrice" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="carPriceTxt" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="jLabel6" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="passwordTxt" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="regBtn" min="-2" max="-2" attributes="0"/>
@@ -91,7 +102,7 @@
         <Property name="text" type="java.lang.String" value="Name"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="name">
+    <Component class="javax.swing.JTextField" name="nameTxt">
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel2">
       <Properties>
@@ -103,11 +114,11 @@
         <Property name="text" type="java.lang.String" value="Email"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="surname">
+    <Component class="javax.swing.JTextField" name="surnameTxt">
     </Component>
-    <Component class="javax.swing.JTextField" name="email">
+    <Component class="javax.swing.JTextField" name="emailTxt">
     </Component>
-    <Component class="javax.swing.JTextField" name="carModel">
+    <Component class="javax.swing.JTextField" name="carModelTxt">
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel4">
       <Properties>
@@ -119,13 +130,23 @@
         <Property name="text" type="java.lang.String" value="Car price"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="carPrice">
+    <Component class="javax.swing.JTextField" name="carPriceTxt">
     </Component>
     <Component class="javax.swing.JButton" name="regBtn">
       <Properties>
         <Property name="text" type="java.lang.String" value="Register"/>
         <Property name="toolTipText" type="java.lang.String" value=""/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="regBtnActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabel6">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Password"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="passwordTxt">
     </Component>
   </SubComponents>
 </Form>
