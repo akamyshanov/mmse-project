@@ -18,19 +18,17 @@ public class Customer {
     private String name;
     private String surname;
     private String email;
-    private int carPrice;
     private HashMap<Integer, Car> cars;
     private String hashedPwd;
-    private String carDescription;
+
     
-    public Customer(int id, String name, String surname, String email, int price, String carDescript, String pwd)
+    public Customer(int id, String name, String surname, String email, Car car, String pwd)
     {
         this.customerId = id;
         this.name = name;
         this.surname = surname;
         this.email = email;
-        this.carPrice = price;
-        this.carDescription = carDescript;
+        cars.put(cars.size(), car);
         this.hashedPwd = pwd;
     }
     
@@ -38,8 +36,8 @@ public class Customer {
         return customerId;
     }
     
-    public int getCarPrice(){
-        return carPrice;
+    public HashMap<Integer, Car> getCarList(){
+        return cars;
     }
     
     public int getCarPrice(int carId){
@@ -48,7 +46,7 @@ public class Customer {
     }
     
     public void addCar(Car car){
-        cars.put(car.getCarId(), car);        
+        cars.put(cars.size(), car);        
     }
     
     public boolean checkPassword(String pwd)

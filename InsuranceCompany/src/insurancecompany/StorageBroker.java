@@ -20,6 +20,7 @@ public class StorageBroker {
         claimList = new ArrayList<Claim>();
         employeeList = new HashMap<Integer, Employee>();
         customerList = new HashMap<Integer, Customer>();
+        populateLists();
     }
     
     public void addClaim(Claim claim){
@@ -38,6 +39,17 @@ public class StorageBroker {
     public Employee getEmployee(int id)
     {
         return employeeList.get(id);
+    }
+    
+    private void populateLists(){
+       //id = employeeList.size();
+       employeeList.put(employeeList.size(), new Employee(employeeList.size(), "Peter", "Sjodin", 1, "12345", Employee.Rank.High));
+       employeeList.put(employeeList.size(), new Employee(employeeList.size(), "Markus", "Hidell", 1, "12345", Employee.Rank.Low));
+       employeeList.put(employeeList.size(), new Employee(employeeList.size(), "Mihhail", "Matskin", 1, "12345", Employee.Rank.High));
+       
+       //customerList.put(customerList.size(), new Customer(customerList.size(), "Mihhail", "Matskin", 1, "12345", Employee.Rank.High));
+       
+       
     }
     
     
