@@ -27,9 +27,10 @@ public class StorageBroker {
         claimList.add(claim);
     }
     
-    public void addCustomer(Customer person)
+    public void addCustomer( String name, String surname, String email, Car car, String pwd)
     {
-        customerList.put(person.getId(), person);
+        
+        customerList.put(customerList.size(), new Customer(customerList.size(), "First", "Customer", "123@kth.se", car, "12345"));
     }
     
     public ArrayList<Claim> getClaims(){
