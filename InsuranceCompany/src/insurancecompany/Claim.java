@@ -18,10 +18,13 @@ public class Claim {
 
     private int id;
     private int customerId;
+    private int carPrice;
+    private int damageCost;
     private String description;
     private Category category;
     
     public Claim(int customerId, String description) {
+        this.id = 0;
         this.customerId = customerId;
         this.description = description;
         this.category = Category.Undefined;
@@ -46,9 +49,8 @@ public class Claim {
     public String getDescription() {
         return description;
     }
-
+    
     public Category getCategory() {
         return category;
     }
-    
 }
