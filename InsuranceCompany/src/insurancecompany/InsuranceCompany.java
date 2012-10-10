@@ -17,6 +17,7 @@ public class InsuranceCompany {
         // TODO code application logic here
         
         StorageBroker database = new StorageBroker();
+
         
         MainForm form = new MainForm();
         MainHandler handler = new MainHandler(form, new StorageBroker());
