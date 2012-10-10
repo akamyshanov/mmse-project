@@ -27,18 +27,15 @@ public class StorageBroker {
         claimList.add(claim);
     }
     
-    public void addCustomer( String name, String surname, String email, Car car, String pwd)
-    {
-        
-        customerList.put(customerList.size(), new Customer(customerList.size(), name, surname, email, car, pwd));
+    public void addCustomer( String name, String surname, String email, String pwd){        
+        customerList.put(customerList.size(), new Customer(customerList.size(), name, surname, email, pwd));
     }
     
     public ArrayList<Claim> getClaims(){
         return claimList;
     }
     
-    public Employee getEmployee(int id)
-    {
+    public Employee getEmployee(int id){
         return employeeList.get(id);
     }
     
@@ -48,7 +45,10 @@ public class StorageBroker {
        employeeList.put(employeeList.size(), new Employee(employeeList.size(), "Markus", "Hidell", 1, "12345", Employee.Rank.Low));
        employeeList.put(employeeList.size(), new Employee(employeeList.size(), "Mihhail", "Matskin", 1, "12345", Employee.Rank.High));
        
-       customerList.put(customerList.size(), new Customer(customerList.size(), "First", "Customer", "123@kth.se", car, "12345"));
+       customerList.put(customerList.size(), new Customer(customerList.size(), "First", "Customer", "123@kth.se", "12345"));
+       claimList.add(new Claim(0, 100, "oh my god!"));
+       claimList.add(new Claim(0, 200, "priehali"));
+
        
        
     }

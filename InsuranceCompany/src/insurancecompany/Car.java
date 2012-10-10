@@ -9,11 +9,14 @@ package insurancecompany;
  * @author Sanyasn
  */
 public class Car {
+    private int carId;
     private int price;
     private String description;
     
-    public Car(String about)
+    public Car(int id, int price, String about)
     {
+        this.carId = id;
+        this.price = price;
         this.description = about;        
     }
     

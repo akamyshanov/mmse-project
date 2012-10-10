@@ -16,6 +16,8 @@ public class InsuranceCompany {
     public static void main(String[] args) {
         // TODO code application logic here
         
+        StorageBroker database = new StorageBroker();
+        
         
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
@@ -33,6 +35,7 @@ public class InsuranceCompany {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(SendClaimForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        
         
                 /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
