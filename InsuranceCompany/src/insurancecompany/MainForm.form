@@ -52,25 +52,16 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="User registration form"/>
       </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="usrRegFormBtnActionPerformed"/>
-      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="sendClaimFormBtn">
       <Properties>
         <Property name="text" type="java.lang.String" value="Send claim form"/>
       </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="sendClaimFormBtnActionPerformed"/>
-      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="employeeFormBtn">
       <Properties>
         <Property name="text" type="java.lang.String" value="Employee form"/>
       </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="employeeFormBtnActionPerformed"/>
-      </Events>
     </Component>
   </SubComponents>
 </Form>

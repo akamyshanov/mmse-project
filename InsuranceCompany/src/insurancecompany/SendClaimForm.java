@@ -50,7 +50,7 @@ public class SendClaimForm extends javax.swing.JFrame {
         damageDescrTxt = new javax.swing.JTextArea();
         sendBtn = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Send claim");
         setResizable(false);
 
@@ -66,11 +66,6 @@ public class SendClaimForm extends javax.swing.JFrame {
         jScrollPane1.setViewportView(damageDescrTxt);
 
         sendBtn.setText("Send");
-        sendBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                sendBtnActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -113,22 +108,7 @@ public class SendClaimForm extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-/*
-    private void sendBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sendBtnActionPerformed
 
-        try
-        {
-            int customerId = Integer.parseInt(this.customerIdTxt.getText());
-            int damageCost = Integer.parseInt(this.damageCostTxt.getText());
-            String damageDescription = this.damageDescrTxt.getText();
-        }
-        catch(Exception e)
-        {
-            JOptionPane.showMessageDialog(this, e.getMessage());
-        }
-        
-    }//GEN-LAST:event_sendBtnActionPerformed
-*/
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField customerIdTxt;
     private javax.swing.JTextField damageCostTxt;
