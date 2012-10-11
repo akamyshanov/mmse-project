@@ -25,16 +25,25 @@ public class EmployeeLoginFormHandler {
     {
         @Override
         public void actionPerformed(ActionEvent e) {
-            if(storage.authenticateEmployee(form.getLogin(), form.getPassword()))
-            {
-                form.dispose();
-                EmployeeForm eForm = new EmployeeForm();
-                new EmployeeHandler(eForm, storage);
-                eForm.setVisible(true);
-            }
-            else
+            Employee emp = storage.getEmployee(form.getLogin(), form.getPassword());
+            
+            if(emp == null)
             {
                 form.setMessage("Authentication failed");
+                return;
+            }
+            
+            form.dispose();
+            
+            switch(emp.getDepartment())
+            {
+                case CarDamage:
+                    EmployeeForm eForm = new EmployeeForm();
+                    new EmployeeHandler(emp, eForm, storage);
+                    eForm.setVisible(true);
+                    break;
+                case Finance:
+                    break;
             }
         }
     }

@@ -6,6 +6,7 @@ package insurancecompany;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 /**
  *
@@ -16,19 +17,12 @@ public class EmployeeHandler {
         EmployeeForm form;
         StorageBroker storage;
         
-    public EmployeeHandler(EmployeeForm form, StorageBroker storage) {
+    public EmployeeHandler(Employee employee, EmployeeForm form, StorageBroker storage) {
         this.form = form;
         this.storage = storage;
-        form.addGetClaimsListener(new GetClaimsListener());
+
+        form.claimsReceived(storage.getClaims(employee));
         
     }
     
-    private class GetClaimsListener implements ActionListener 
-    {
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            
-            form.claimsReceived(storage.getClaims(form.getId(), form.getPassword()));        
-        }
-    }
 }

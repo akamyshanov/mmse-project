@@ -27,15 +27,13 @@ public class StorageBroker {
 
     private Customer getCustomer(int id, String password) {
         Customer customer = customerList.get(id);
-        if (customer == null) {
+        if (customer == null || !customer.checkPassword(password)) {
             return null;
         }
-
-        if (!customer.checkPassword(password)) {
-            return null;
+        else
+        {
+            return customer;
         }
-
-        return customer;
     }
 
     public String getStatus()
@@ -58,11 +56,11 @@ public class StorageBroker {
         for(Employee e : employeeList.values())
         {
             status += String.format(
-                    "%d: %s %s | %d | %s\n",
+                    "%d: %s %s | %s | %s\n",
                     e.getId(),
                     e.getName(),
                     e.getSurname(),
-                    e.getDepartmentId(),
+                    e.getDepartment(),
                     e.getRank());
         }
         
@@ -104,31 +102,51 @@ public class StorageBroker {
         return id;
     }
 
-    public ArrayList<Claim> getClaims(int id, String password) {
+    public ArrayList<Claim> getClaims(Employee employee) {
         ArrayList<Claim> claimList = new ArrayList<Claim>();
+        ArrayList<Claim.Status> matchingStatuses = new ArrayList<Claim.Status>();
+        switch(employee.getDepartment())
+        {
+            case CarDamage:
+                matchingStatuses.add(Claim.Status.UnRanked);
+                if(employee.getRank() == Employee.Rank.High)
+                {
+                    matchingStatuses.add(Claim.Status.Ranked); 
+                }
+                break;
+            case Finance:
+                matchingStatuses.add(Claim.Status.Confirmed);
+                break;
+            default:
+                return claimList;
+        }
+        
+        
         for(Claim c : this.claimList)
         {
-            claimList.add(c);
+            if(matchingStatuses.contains(c.getStatus()))
+            {
+                claimList.add(c);
+            }
         }
         return claimList;
     }
 
-    public Employee getEmployee(int id) {
-        return employeeList.get(id);
-    }
-    
-    public boolean authenticateEmployee(int EmployeeId, String pwd){
+    public Employee getEmployee(int EmployeeId, String pwd){
         Employee emp = employeeList.get(EmployeeId);
-        if(emp.checkPassword(pwd) == true && emp != null)
-            return true;
-        return false;
+        if(emp == null || !emp.checkPassword(pwd)) {
+            return null;
+        }
+        else {
+            return emp;
+        }
     }
 
     private void populateLists() {
-        //id = employeeList.size();
-        employeeList.put(employeeList.size(), new Employee(employeeList.size(), "Peter", "Sjodin", 1, "12345", Employee.Rank.High));
-        employeeList.put(employeeList.size(), new Employee(employeeList.size(), "Markus", "Hidell", 1, "12345", Employee.Rank.Low));
-        employeeList.put(employeeList.size(), new Employee(employeeList.size(), "Mihhail", "Matskin", 1, "12345", Employee.Rank.High));
+
+        employeeList.put(employeeList.size(), new Employee(employeeList.size(), "Peter", "Sjodin", Employee.Department.CarDamage, "12345", Employee.Rank.High));
+        employeeList.put(employeeList.size(), new Employee(employeeList.size(), "Markus", "Hidell", Employee.Department.CarDamage, "12345", Employee.Rank.Low));
+        employeeList.put(employeeList.size(), new Employee(employeeList.size(), "Mihhail", "Matskin", Employee.Department.Finance, "12345", Employee.Rank.High));
         
         addCustomer("First", "Customer", "123@kth.se", "12345", "Lada Kalina", 200);
         addCustomer("Second", "Customer", "123@kth.se", "12345", "Lada Kalina", 200);

@@ -52,10 +52,11 @@ public class Claim {
     
     public enum Status
     {
-        Unregistered,
-        Registerd,
+        UnRanked,
+        Ranked,
         Confirmed,
-        Declined
+        Declined,
+        Paid
     }
 
     private int id;
@@ -73,6 +74,6 @@ public class Claim {
         this.damageCost = damageCost;
         this.description = description;
         this.category = Category.Undefined;
-        this.status = Status.Unregistered;
+        this.status = Status.UnRanked;
     }
 }

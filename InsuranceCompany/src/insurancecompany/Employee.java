@@ -4,8 +4,6 @@
  */
 package insurancecompany;
 
-import sun.security.util.Password;
-
 /**
  *
  * @author Sanyasn
@@ -13,22 +11,29 @@ import sun.security.util.Password;
 public class Employee {
     public enum Rank
     {
+        Undefined,
         Low,
         High
     }
+    public enum Department
+    {
+        CarDamage,
+        Finance
+    }
+    
     private int id;
     private String name;
     private String surname;
-    private int departmentId;
+    private Department department;
     private String password;
     private Rank rank;  
     
-    public Employee(int id, String name, String sur, int department, String pwd, Rank rank)
+    public Employee(int id, String name, String sur, Department department, String pwd, Rank rank)
     {
         this.id = id;
         this.name = name;
         this.surname = sur;
-        this.departmentId = department;
+        this.department = department;
         this.password = pwd;
         this.rank = rank;         
     }
@@ -45,8 +50,8 @@ public class Employee {
         return surname;
     }
 
-    public int getDepartmentId() {
-        return departmentId;
+    public Department getDepartment() {
+        return department;
     }
 
     public Rank getRank() {
