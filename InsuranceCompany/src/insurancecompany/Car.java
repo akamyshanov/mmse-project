@@ -9,19 +9,22 @@ package insurancecompany;
  * @author Sanyasn
  */
 public class Car {
-    private int carId;
     private int price;
-    private String description;
+    private String model;
     
-    public Car(int id, int price, String about)
+    public Car(int price, String about)
     {
-        this.carId = id;
         this.price = price;
-        this.description = about;        
+        this.model = about;        
     }
     
     public int getPrice(){
         return price;
+    }
+    
+    public String getModel()
+    {
+        return model;
     }
     
 }

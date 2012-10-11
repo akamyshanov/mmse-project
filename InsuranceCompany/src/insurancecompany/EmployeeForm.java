@@ -4,6 +4,8 @@
  */
 package insurancecompany;
 
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.util.HashMap;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
@@ -37,7 +39,7 @@ public class EmployeeForm extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         passwordTxt = new javax.swing.JTextField();
-        loginBtn = new javax.swing.JButton();
+        getClaimsBtn = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -53,12 +55,7 @@ public class EmployeeForm extends javax.swing.JFrame {
 
         jLabel2.setText("Password");
 
-        loginBtn.setText("Get claims");
-        loginBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                loginBtnActionPerformed(evt);
-            }
-        });
+        getClaimsBtn.setText("Get claims");
 
         jLabel3.setText("Claims to be handled:");
 
@@ -70,7 +67,7 @@ public class EmployeeForm extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel3)
-                    .addComponent(loginBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(getClaimsBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -94,7 +91,7 @@ public class EmployeeForm extends javax.swing.JFrame {
                     .addComponent(jLabel2)
                     .addComponent(passwordTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(loginBtn)
+                .addComponent(getClaimsBtn)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel3)
                 .addGap(8, 8, 8)
@@ -106,41 +103,36 @@ public class EmployeeForm extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private HashMap<Integer, Claim> claims = new HashMap<Integer, Claim>();
-    private void getClaims(int id, String password)
-    {
-        claims.clear();
-
-        for(int i = 0; i < 5; ++i)
-        {
-            Claim claim = new Claim(i, i * 100, "descr" + i);
-            claim.setId(i);
-            claim.setCarPrice(i * 10000);
-            claims.put(claim.getId(), claim);
-        }
-    };
     
-    private void loginBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginBtnActionPerformed
-        try
-        {
-            getClaims(Integer.parseInt(idTxt.getText()), passwordTxt.getText());
-            
-            DefaultListModel model = new DefaultListModel();
-            claimList.setModel(model);
-            
-            for(int claimId : claims.keySet())
-            {
-                model.addElement(claimId);
-            }
-            
-            //claimList.getModel().
-            // TODO: do smth
-        }
-        catch(Exception e)
-        {
-             JOptionPane.showMessageDialog(this, e.getMessage());
-        }
-    }//GEN-LAST:event_loginBtnActionPerformed
+    public int getId()
+    {
+        return Integer.parseInt(idTxt.getText());
+    }
+    
+    public String getPassword()
+    {
+        return passwordTxt.getText();
+    }
 
+    public void addGetClaimsListener(ActionListener listener)
+    {
+        getClaimsBtn.addActionListener(listener);
+    }
+    
+    public void claimsReceived(ArrayList<Claim> claims)
+    {
+        DefaultListModel model = new DefaultListModel();
+        this.claimList.setModel(model);
+        for(Claim c : claims)
+        {
+            this.claims.put(c.getId(), c);
+            model.addElement(c.getId());
+        }
+        
+        
+        
+    }
+    
     private void claimListMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_claimListMouseClicked
         if(evt.getClickCount() == 2)
         {
@@ -160,12 +152,12 @@ public class EmployeeForm extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JList claimList;
+    private javax.swing.JButton getClaimsBtn;
     private javax.swing.JTextField idTxt;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JButton loginBtn;
     private javax.swing.JTextField passwordTxt;
     // End of variables declaration//GEN-END:variables
 }

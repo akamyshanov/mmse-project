@@ -4,6 +4,7 @@
  */
 package insurancecompany;
 
+import java.awt.event.ActionListener;
 import javax.swing.JOptionPane;
 
 /**
@@ -58,11 +59,6 @@ public class CustomerRegForm extends javax.swing.JFrame {
 
         regBtn.setText("Register");
         regBtn.setToolTipText("");
-        regBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                regBtnActionPerformed(evt);
-            }
-        });
 
         jLabel6.setText("Password");
 
@@ -130,25 +126,46 @@ public class CustomerRegForm extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void regBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_regBtnActionPerformed
-        try
-        {
-            String name = nameTxt.getText();
-            String surname = surnameTxt.getText();
-            String email = emailTxt.getText();
-            String car = carModelTxt.getText();
-            int carPrice = Integer.parseInt(carPriceTxt.getText());
-            String password = passwordTxt.getText();
-            // TODO: do smth
-        }
-        catch(Exception e)
-        {
-            JOptionPane.showMessageDialog(this, e.getMessage());
-        }
-        
-        
-    }//GEN-LAST:event_regBtnActionPerformed
-
+    public String getCustomerName()
+    {
+        return nameTxt.getText();
+    }
+    
+    public String getCustomerSurname()
+    {
+        return surnameTxt.getText();
+    }
+    
+    public String getEmail()
+    {
+        return emailTxt.getText();
+    }
+    
+    public String getCarModel()
+    {
+        return carModelTxt.getText();
+    }
+    
+    public int getCarPrice()
+    {
+        return Integer.parseInt(carPriceTxt.getText());
+    }
+    
+    public String getPassword()
+    {
+        return passwordTxt.getText();
+    }
+    
+    public void addRegListener(ActionListener listener)
+    {
+        regBtn.addActionListener(listener);
+    }
+    
+    public void idReceived(int id)
+    {
+        JOptionPane.showMessageDialog(this, "Your new id is " + id);
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField carModelTxt;
     private javax.swing.JTextField carPriceTxt;

@@ -34,22 +34,28 @@ public class Claim {
         return category;
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public void setCarPrice(int carPrice) {
-        this.carPrice = carPrice;
-    }
-
     public void setCategory(Category category) {
         this.category = category;
     }
+    
+    public Status getStatus()
+    {
+        return this.status;
+    }
+    
     public enum Category
     {
         Undefined,
         Simple,
         Complex
+    }
+    
+    public enum Status
+    {
+        Unregistered,
+        Registerd,
+        Confirmed,
+        Declined
     }
 
     private int id;
@@ -58,13 +64,15 @@ public class Claim {
     private int damageCost;
     private String description;
     private Category category;
+    private Status status;
 
-    public Claim(int customerId, int damageCost, String description) {
+    public Claim(int id, int customerId, int carPrice, int damageCost, String description) {
+        this.id = id;
         this.customerId = customerId;
+        this.carPrice = carPrice;
         this.damageCost = damageCost;
         this.description = description;
+        this.category = Category.Undefined;
+        this.status = Status.Unregistered;
     }
-
-    
-    
 }

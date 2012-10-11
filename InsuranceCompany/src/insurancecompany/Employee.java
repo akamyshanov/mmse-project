@@ -4,6 +4,8 @@
  */
 package insurancecompany;
 
+import sun.security.util.Password;
+
 /**
  *
  * @author Sanyasn
@@ -18,7 +20,7 @@ public class Employee {
     private String name;
     private String surname;
     private int departmentId;
-    private String hashedPwd;
+    private String password;
     private Rank rank;  
     
     public Employee(int id, String name, String sur, int department, String pwd, Rank rank)
@@ -27,31 +29,37 @@ public class Employee {
         this.name = name;
         this.surname = sur;
         this.departmentId = department;
-        this.hashedPwd = pwd;
+        this.password = pwd;
         this.rank = rank;         
     }
     
     public int getId(){
         return id;
     }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getSurname() {
+        return surname;
+    }
+
+    public int getDepartmentId() {
+        return departmentId;
+    }
+
+    public Rank getRank() {
+        return rank;
+    }
     
     
     
     public boolean checkPassword(String pwd)
     {
-        if(hashedPwd.equals(getHash(pwd)))
-            return true;
-        return false;
+        return password.equals(pwd);
     }
-    
-    private String getHash(String password) {
-        //MessageDigest hasher = MessageDigest.getInstance("SHA-256");
-        //hasher.reset();
-        //hasher.update(password);
-        //return hasher.digest(password.getBytes("UTF-8"));
-        return password;
-    }
-    
+   
 }
 
 

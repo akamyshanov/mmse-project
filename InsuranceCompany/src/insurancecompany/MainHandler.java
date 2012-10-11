@@ -28,6 +28,7 @@ public class MainHandler {
             
             
             CustomerRegForm form = new CustomerRegForm();
+            new CustomerRegHandler(form, storage);
             form.setVisible(true);
             
             System.out.println("CustomerRegFormListener");
@@ -39,12 +40,11 @@ public class MainHandler {
     {
         @Override
         public void actionPerformed(ActionEvent e) {
+            
             SendClaimForm form = new SendClaimForm();
+            new SendClaimHandler(form, storage);
             form.setVisible(true);
-            
-            System.out.println("SendClaimFormListener");
-            
-            //do something with storage           
+      
         }
     }
     
@@ -54,11 +54,9 @@ public class MainHandler {
         public void actionPerformed(ActionEvent e) {
             
             EmployeeForm form = new EmployeeForm();
+            new EmployeeHandler(form, storage);
             form.setVisible(true);
-
-            
-            System.out.println("EmployeeFormListener");
-            //do something with storage           
+        
         }
     }
     

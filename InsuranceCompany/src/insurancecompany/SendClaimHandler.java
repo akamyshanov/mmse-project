@@ -12,15 +12,14 @@ import java.awt.event.ActionListener;
  *
  * @author Sanyasn
  */
-public class SendClaimFormHandler {
-    private SendClaimForm view;
+public class SendClaimHandler {
+    private SendClaimForm form;
     private StorageBroker storage;
     
-    public SendClaimFormHandler(SendClaimForm form, StorageBroker db){
-        this.view = form;
+    public SendClaimHandler(SendClaimForm form, StorageBroker db){
+        this.form = form;
         this.storage = db;
-        
-        view.addButtonActionListener(new SubmitListener());
+        this.form.sendActionListener(new SubmitListener());
     }
     
     
@@ -28,10 +27,8 @@ public class SendClaimFormHandler {
     {
         @Override
         public void actionPerformed(ActionEvent e) {
-            int customerId = view.getCustomerId();
-            int cost = view.getDamageCost();
-            
-            //do something with storage           
+            Boolean added = storage.addClaim(form.getCustomerId(), form.getPassword(), form.getDamageCost(), form.getDescription());
+            form.answerReceived(added);          
         }
     }
     

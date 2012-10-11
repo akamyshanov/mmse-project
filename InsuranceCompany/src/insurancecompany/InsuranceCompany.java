@@ -15,10 +15,7 @@ public class InsuranceCompany {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        
-        StorageBroker database = new StorageBroker();
 
-        
         MainForm form = new MainForm();
         MainHandler handler = new MainHandler(form, new StorageBroker());
         form.setVisible(true);
