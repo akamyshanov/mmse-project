@@ -7,6 +7,8 @@ package insurancecompany;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
 
 /**
  *
@@ -17,6 +19,7 @@ public class StorageBroker {
     private HashMap<Integer, Claim> claimList = new HashMap<Integer, Claim>();
     private HashMap<Integer, Employee> employeeList = new HashMap<Integer, Employee>();
     private HashMap<Integer, Customer> customerList = new HashMap<Integer, Customer>();
+    private ArrayList<Payment> paymentList = new ArrayList<Payment>();
 
     public StorageBroker() {
         populateLists();
@@ -104,6 +107,16 @@ public class StorageBroker {
         System.out.println(getStatus());
         return id;
     }
+    
+    public ArrayList<Claim> getClaimsByCustomerId(int customerId){
+        ArrayList<Claim> claims = new ArrayList<Claim>();
+        for (Claim cl : claimList.values()) {
+            if(cl.getCustomerId()== customerId)
+                claims.add(cl);
+        }
+        return claims;                 
+    }
+    
 
     public ArrayList<Claim> getClaims(Employee employee) {
         ArrayList<Claim> claimList = new ArrayList<Claim>();
@@ -137,6 +150,11 @@ public class StorageBroker {
     
     public void updateClaim(Claim claim) {
         claimList.put(claim.getId(), claim);
+    }
+    
+    public void addPayment(int customerId, int claimId){
+        int index = paymentList.size();
+        paymentList.add(new Payment(paymentList.size(), customerId, claimId, "Handels", 132789643));
     }
 
     public Employee getEmployee(int EmployeeId, String pwd){

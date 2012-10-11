@@ -4,6 +4,8 @@
  */
 package insurancecompany;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author Andrew
@@ -55,12 +57,24 @@ public class Claim {
         this.status = status;
     }
     
+    public static ArrayList<String> getListOfRanks(){
+        ArrayList<String> rankArray = new ArrayList<String>();
+        for (Claim.Rank rank : Claim.Rank.values())
+            rankArray.add(rank.toString());
+        return rankArray;
+    }
+    
+    public Claim.Status[] getStatusList(){
+        return Status.values();
+    }
+    
     public enum Rank
     {
         Undefined,
         Simple,
         Complex
     }
+    
     
     public enum Status
     {

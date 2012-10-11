@@ -9,19 +9,19 @@ package insurancecompany;
  * @author Sanyasn
  */
 public class AutomaticCustomerEmulator {
-    private int mailCount;
-    private int smsCount;
+    private static int mailCount;
+    private static int smsCount;
     
     public AutomaticCustomerEmulator(){
         mailCount = 0;
         smsCount = 0;
     }
     
-    public String sendForm(){
+    public static String sendForm(){
         return "this is filled out form";
     }
         
-    public void sendMail(String mail){
+    public static void sendMail(String mail){
         mailCount++;        
     }
     
