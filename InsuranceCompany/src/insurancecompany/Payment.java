@@ -14,13 +14,22 @@ public class Payment {
     private int claimId;
     private String bank;
     private long accountNumber;
+    private double amount;
+    private Status status;
     
-    public Payment(int id, int customerid, int claim, String b, long a){
+    public enum Status{
+        Finished,
+        Unfinished
+    }
+    
+    public Payment(int id, int customerid, int claim, String b, long a, double amount){
         this.pid = id;
         this.customerId = customerid;
         this.claimId = claim;
         this.bank = b;
-        this.accountNumber = a;        
+        this.accountNumber = a;
+        this.amount = amount;
+        status = Status.Unfinished;
     }
     
     public int getId(){
@@ -29,6 +38,18 @@ public class Payment {
     
     public int getCustomerId(){
         return customerId;
+    }
+    
+    public int getClaimId(){
+        return claimId;
+    }
+    
+    public double getAmount(){
+        return amount;
+    }
+    
+    public Payment.Status getStatus(){
+        return status;
     }
     
     public String getBank(){

@@ -18,12 +18,13 @@ public class EmployeeHandler {
     EmployeeForm form;
     StorageBroker storage;
     Employee employee;
-    HashMap<Integer, Claim> claims = new HashMap<Integer, Claim>();
+    HashMap<Integer, Claim> claims;
 
     public EmployeeHandler(Employee employee, EmployeeForm form, StorageBroker storage) {
         this.employee = employee;
         this.form = form;
         this.storage = storage;
+        claims = new HashMap<Integer, Claim>();
 
 
         updateClaims();

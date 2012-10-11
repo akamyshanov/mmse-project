@@ -131,7 +131,7 @@ public class ClaimActionHandler {
             form.showNotification();
             if(currentStatus == Claim.Status.Confirmed)
                  AutomaticCustomerEmulator.sendForm();
-            storage.addPayment(claim.getCustomerId(), claim.getId());
+            storage.addPayment(claim.getCustomerId(), claim.getId(), claim.getDamageCost());
                 
             
         }

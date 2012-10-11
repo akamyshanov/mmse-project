@@ -43,6 +43,9 @@ public class EmployeeLoginFormHandler {
                     eForm.setVisible(true);
                     break;
                 case Finance:
+                    FinacialForm finForm = new FinacialForm();
+                    new FinancialFormHandler(emp, finForm, storage);
+                    finForm.setVisible(true);
                     break;
             }
         }

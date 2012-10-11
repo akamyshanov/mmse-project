@@ -117,6 +117,10 @@ public class StorageBroker {
         return claims;                 
     }
     
+    public ArrayList<Payment> getPayments(){
+        return paymentList;
+    }
+    
 
     public ArrayList<Claim> getClaims(Employee employee) {
         ArrayList<Claim> claimList = new ArrayList<Claim>();
@@ -152,9 +156,9 @@ public class StorageBroker {
         claimList.put(claim.getId(), claim);
     }
     
-    public void addPayment(int customerId, int claimId){
+    public void addPayment(int customerId, int claimId, int amount){
         int index = paymentList.size();
-        paymentList.add(new Payment(paymentList.size(), customerId, claimId, "Handels", 132789643));
+        paymentList.add(new Payment(paymentList.size(), customerId, claimId, "Handels", 132789643, amount));
     }
 
     public Employee getEmployee(int EmployeeId, String pwd){
@@ -178,10 +182,25 @@ public class StorageBroker {
         addCustomer("Third", "Customer", "123@kth.se", "12345", "Lada Kalina", 200);
         addCustomer("Fourth", "Customer", "123@kth.se", "12345", "Lada Kalina", 200);
         
-        claimList.put(claimList.size(), new Claim(claimList.size(), 0, 100, 10, "oh my god!"));
-        Claim claim = new Claim(claimList.size(), 0, 100, 10, "priehali");
+        claimList.put(claimList.size(), new Claim(claimList.size(), 0, 200, 10, "oh my god!"));
+        claimList.put(claimList.size(), new Claim(claimList.size(), 1, 200, 10, "oh my god!"));
+        Claim claim = new Claim(claimList.size(), 0, 200, 10, "priehali");
         claim.rank(Claim.Rank.Simple);
         claimList.put(claim.getId(), claim);
+        
+        Claim claim2 = new Claim(claimList.size(), 1, 200, 50, "just a little bit");
+        claim2.rank(Claim.Rank.Complex);
+        claim2.setStatus(Claim.Status.Confirmed);
+        claimList.put(claim2.getId(), claim2);         
+        addPayment(0, claim2.getId(), claim2.getDamageCost());
+        
+        Claim claim3 = new Claim(claimList.size(), 0, 200, 80, "just a little bit");
+        claim3.rank(Claim.Rank.Complex);
+        claim3.setStatus(Claim.Status.Confirmed);
+        claimList.put(claim3.getId(), claim3);         
+        addPayment(0, claim3.getId(), claim3.getDamageCost());
+        
+        
 
         System.out.println(getStatus());
 
