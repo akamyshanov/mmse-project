@@ -53,8 +53,13 @@ public class MainHandler {
         @Override
         public void actionPerformed(ActionEvent e) {
             
+            /*
             EmployeeForm form = new EmployeeForm();
             new EmployeeHandler(form, storage);
+            form.setVisible(true);
+             * */
+            EmployeeLoginForm form = new EmployeeLoginForm();
+            new EmployeeLoginFormHandler(form, storage);
             form.setVisible(true);
         
         }

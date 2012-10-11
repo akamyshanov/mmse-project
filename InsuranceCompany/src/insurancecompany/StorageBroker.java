@@ -116,6 +116,13 @@ public class StorageBroker {
     public Employee getEmployee(int id) {
         return employeeList.get(id);
     }
+    
+    public boolean authenticateEmployee(int EmployeeId, String pwd){
+        Employee emp = employeeList.get(EmployeeId);
+        if(emp.checkPassword(pwd) == true && emp != null)
+            return true;
+        return false;
+    }
 
     private void populateLists() {
         //id = employeeList.size();
