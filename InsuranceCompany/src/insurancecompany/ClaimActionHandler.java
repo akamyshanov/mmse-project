@@ -53,7 +53,7 @@ public class ClaimActionHandler {
         switch(claim.getStatus())
         {
             case UnRanked:
-                claim.rank(choice1 ? Claim.Rank.Simple : Claim.Rank.Complex);
+                claim.rank(choice1 ? Claim.Rank.Complex : Claim.Rank.Simple);
                 break;
             case Ranked:
                 claim.setStatus(choice1 ? Claim.Status.Confirmed : Claim.Status.Declined);
