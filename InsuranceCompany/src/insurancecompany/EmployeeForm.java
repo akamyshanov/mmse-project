@@ -4,8 +4,10 @@
  */
 package insurancecompany;
 
+import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
@@ -30,7 +32,9 @@ public class EmployeeForm extends javax.swing.JFrame {
             public void mouseClicked(java.awt.event.MouseEvent e) {
                 if(e.getClickCount() == 2)
                 {
-                    System.out.println(claimTable.getValueAt(claimTable.getSelectedRow(), 0));
+                    if(listener != null) {
+                        listener.actionPerformed(new ActionEvent(this, ((Number)claimTable.getValueAt(claimTable.getSelectedRow(), 0)).intValue(), null));
+                    }
                 }
             }
         });
@@ -90,26 +94,32 @@ public class EmployeeForm extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel3)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(157, 157, 157)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 477, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(572, Short.MAX_VALUE))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 477, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel3)
-                .addGap(146, 146, 146)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(199, Short.MAX_VALUE))
+                .addContainerGap(42, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
     private HashMap<Integer, Claim> claims = new HashMap<Integer, Claim>();
 
-    public void claimsReceived(ArrayList<Claim> claims) {
+    ActionListener listener = null;
+    
+    
+    public void addActionListener(ActionListener listener) {
+        this.listener = listener;
+    }
+
+            
+    public void claimsReceived(Collection<Claim> claims) {
 
         DefaultTableModel model = new DefaultTableModel() {
             @Override

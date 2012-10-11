@@ -57,9 +57,7 @@ public class Employee {
     public Rank getRank() {
         return rank;
     }
-    
-    
-    
+
     public boolean checkPassword(String pwd)
     {
         return password.equals(pwd);

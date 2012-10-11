@@ -14,15 +14,15 @@ public class Claim {
         return id;
     }
 
-    public int getCustomerId() {
+    public Integer getCustomerId() {
         return customerId;
     }
 
-    public int getCarPrice() {
+    public Integer getCarPrice() {
         return carPrice;
     }
 
-    public int getDamageCost() {
+    public Integer getDamageCost() {
         return damageCost;
     }
 
@@ -30,20 +30,32 @@ public class Claim {
         return description;
     }
 
-    public Category getCategory() {
-        return category;
+    public Rank getCategory() {
+        return rank;
     }
 
-    public void setCategory(Category category) {
-        this.category = category;
+    public void setCategory(Rank category) {
+        this.rank = category;
     }
     
     public Status getStatus()
     {
         return this.status;
     }
+
+    public void rank(Rank rank) {
+        if(this.rank != Rank.Undefined)
+            return;
+        
+        this.rank = rank;
+        this.status = rank == Rank.Undefined ? Status.UnRanked : Status.Ranked;
+    }
+
+    public void setStatus(Status status) {
+        this.status = status;
+    }
     
-    public enum Category
+    public enum Rank
     {
         Undefined,
         Simple,
@@ -64,7 +76,7 @@ public class Claim {
     private int carPrice;
     private int damageCost;
     private String description;
-    private Category category;
+    private Rank rank;
     private Status status;
 
     public Claim(int id, int customerId, int carPrice, int damageCost, String description) {
@@ -73,7 +85,7 @@ public class Claim {
         this.carPrice = carPrice;
         this.damageCost = damageCost;
         this.description = description;
-        this.category = Category.Undefined;
+        this.rank = Rank.Undefined;
         this.status = Status.UnRanked;
     }
 }

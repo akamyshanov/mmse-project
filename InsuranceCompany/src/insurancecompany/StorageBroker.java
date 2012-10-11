@@ -14,14 +14,11 @@ import java.util.HashMap;
  */
 public class StorageBroker {
 
-    private ArrayList<Claim> claimList;
-    private HashMap<Integer, Employee> employeeList;
-    private HashMap<Integer, Customer> customerList;
+    private HashMap<Integer, Claim> claimList = new HashMap<Integer, Claim>();
+    private HashMap<Integer, Employee> employeeList = new HashMap<Integer, Employee>();
+    private HashMap<Integer, Customer> customerList = new HashMap<Integer, Customer>();
 
     public StorageBroker() {
-        claimList = new ArrayList<Claim>();
-        employeeList = new HashMap<Integer, Employee>();
-        customerList = new HashMap<Integer, Customer>();
         populateLists();
     }
 
@@ -65,7 +62,7 @@ public class StorageBroker {
         }
         
         status += "\n=== Claims ===\n";
-        for(Claim c : claimList)
+        for(Claim c : claimList.values())
         {
             status += String.format(
                     "%d | %d | %d | %d | %s | %s | %s\n",
@@ -87,11 +84,17 @@ public class StorageBroker {
         if (customer == null) {
             return false;
         }
-        claimList.add(new Claim(claimList.size(), customer.getCustomerId(), customer.getCar().getPrice(), damageCost, description));
+        int id = claimList.size();
+        
+        claimList.put(id, new Claim(id, customer.getCustomerId(), customer.getCar().getPrice(), damageCost, description));
         
         System.out.println(getStatus());
         
         return true;
+    }
+    
+    public Claim getClaim(int id) {
+        return null;
     }
 
     public int addCustomer(String name, String surname, String email, String pwd, String carModel, int carPrice) {
@@ -122,7 +125,7 @@ public class StorageBroker {
         }
         
         
-        for(Claim c : this.claimList)
+        for(Claim c : this.claimList.values())
         {
             if(matchingStatuses.contains(c.getStatus()))
             {
@@ -130,6 +133,10 @@ public class StorageBroker {
             }
         }
         return claimList;
+    }
+    
+    public void updateClaim(Claim claim) {
+        claimList.put(claim.getId(), claim);
     }
 
     public Employee getEmployee(int EmployeeId, String pwd){
@@ -153,8 +160,10 @@ public class StorageBroker {
         addCustomer("Third", "Customer", "123@kth.se", "12345", "Lada Kalina", 200);
         addCustomer("Fourth", "Customer", "123@kth.se", "12345", "Lada Kalina", 200);
         
-        claimList.add(new Claim(claimList.size(), 0, 100, 10, "oh my god!"));
-        claimList.add(new Claim(claimList.size(), 0, 100, 10, "priehali"));
+        claimList.put(claimList.size(), new Claim(claimList.size(), 0, 100, 10, "oh my god!"));
+        Claim claim = new Claim(claimList.size(), 0, 100, 10, "priehali");
+        claim.rank(Claim.Rank.Simple);
+        claimList.put(claim.getId(), claim);
 
         System.out.println(getStatus());
 
