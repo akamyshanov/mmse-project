@@ -139,7 +139,7 @@ public class EmployeeForm extends javax.swing.JFrame {
 
         for (Claim c : claims) {
             this.claims.put(c.getId(), c);
-            model.addRow(new Object[]{c.getId(), c.getStatus(), c.getCustomerId(), c.getDamageCost(), c.getCategory()});
+            model.addRow(new Object[]{c.getId(), c.getStatus(), c.getCustomerId(), c.getDamageCost(), c.getRank()});
         }
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables

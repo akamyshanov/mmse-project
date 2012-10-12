@@ -20,7 +20,6 @@ public class Customer {
     private String email;
     private Car car;
     private String password;
-    private Insurance insurance;
 
     
     public Customer(int id, String name, String surname, String email, String pwd, Car car)
@@ -31,7 +30,6 @@ public class Customer {
         this.email = email;
         this.password = pwd;
         this.car = car;
-        insurance = Insurance.Collision;
     }
 
     public int getCustomerId() {
@@ -52,10 +50,6 @@ public class Customer {
     
     public Car getCar(){
         return car;
-    }
-    
-    public String getInsurance(){
-        return Insurance.Collision.toString();
     }
 
     public boolean checkPassword(String pwd)

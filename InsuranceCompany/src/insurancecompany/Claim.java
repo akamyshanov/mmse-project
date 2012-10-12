@@ -32,7 +32,7 @@ public class Claim {
         return description;
     }
 
-    public Rank getCategory() {
+    public Rank getRank() {
         return rank;
     }
 
@@ -62,10 +62,6 @@ public class Claim {
         for (Claim.Rank rank : Claim.Rank.values())
             rankArray.add(rank.toString());
         return rankArray;
-    }
-    
-    public Claim.Status[] getStatusList(){
-        return Status.values();
     }
     
     public enum Rank

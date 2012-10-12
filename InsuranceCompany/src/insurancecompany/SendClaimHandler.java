@@ -27,8 +27,8 @@ public class SendClaimHandler {
     {
         @Override
         public void actionPerformed(ActionEvent e) {
-            Boolean added = storage.addClaim(form.getCustomerId(), form.getPassword(), form.getDamageCost(), form.getDescription());
-            form.answerReceived(added);          
+            int id = storage.addClaim(form.getCustomerId(), form.getPassword(), form.getDamageCost(), form.getDescription());
+            form.answerReceived(id >= 0);         
         }
     }
     

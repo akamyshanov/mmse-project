@@ -23,8 +23,14 @@ public class ClaimActionForm extends javax.swing.JFrame {
         initComponents();
     }
 
-    public void setData(Claim claim) {
+    
+    
+    
+    public void setData(Claim claim, String action1, String action2) {
 
+        choice1btn.setText(action1);
+        choice2btn.setText(action2);
+        
         customerId.setText(claim.getCustomerId().toString());
         carPrice.setText(claim.getCarPrice().toString());
         damageCost.setText(claim.getDamageCost().toString());
@@ -33,12 +39,31 @@ public class ClaimActionForm extends javax.swing.JFrame {
 
     }
 
+
+    public void addActionListeners(ActionListener action1, ActionListener action2) {
+        choice1btn.addActionListener(action1);
+        choice2btn.addActionListener(action2);
+    }
+    
+    /*
+    
+    public void setData(Claim claim) {
+
+        customerId.setText(claim.getCustomerId().toString());
+        carPrice.setText(claim.getCarPrice().toString());
+        damageCost.setText(claim.getDamageCost().toString());
+        status.setText(claim.getStatus().toString());
+        description.setText(claim.getDescription().toString());
+
+    } 
+    
     public void addActionListeners(ActionListener combo, ActionListener confirm, ActionListener decline, ActionListener save) {
         confirmButton.addActionListener(confirm);
         declineButton.addActionListener(decline);
         saveButton.addActionListener(save);
         rankComboBox.addActionListener(combo);
     }
+    
     
     public void setRanksList(Claim.Rank currentRank, Claim.Rank[] rankList) {        
         rankComboBox.setModel(new DefaultComboBoxModel(rankList));
@@ -66,7 +91,7 @@ public class ClaimActionForm extends javax.swing.JFrame {
     public Claim.Rank getRank(){
         return (Claim.Rank)rankComboBox.getSelectedItem();
     }
-    
+    */
     
     public void updateTable(ArrayList<Claim> claims) {
 
@@ -79,7 +104,6 @@ public class ClaimActionForm extends javax.swing.JFrame {
 
         claimsTable.setModel(model);
 
-
         model.addColumn("Claim ID");
         model.addColumn("Status");
         model.addColumn("Customer ID");
@@ -87,8 +111,7 @@ public class ClaimActionForm extends javax.swing.JFrame {
         model.addColumn("Rank");
 
         for (Claim c : claims) {
-            //this.claims.put(c.getId(), c);
-            model.addRow(new Object[]{c.getId(), c.getStatus(), c.getCustomerId(), c.getDamageCost(), c.getCategory()});
+            model.addRow(new Object[]{c.getId(), c.getStatus(), c.getCustomerId(), c.getDamageCost(), c.getRank()});
         }
     }
     
@@ -107,7 +130,6 @@ public class ClaimActionForm extends javax.swing.JFrame {
         carPrice = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         damageCost = new javax.swing.JTextField();
-        jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         status = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
@@ -116,10 +138,8 @@ public class ClaimActionForm extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         claimsTable = new javax.swing.JTable();
-        rankComboBox = new javax.swing.JComboBox();
-        confirmButton = new javax.swing.JButton();
-        declineButton = new javax.swing.JButton();
-        saveButton = new javax.swing.JButton();
+        choice1btn = new javax.swing.JButton();
+        choice2btn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -134,8 +154,6 @@ public class ClaimActionForm extends javax.swing.JFrame {
         jLabel3.setText("Damage cost");
 
         damageCost.setEditable(false);
-
-        jLabel4.setText("Category");
 
         jLabel5.setText("Status");
 
@@ -163,14 +181,9 @@ public class ClaimActionForm extends javax.swing.JFrame {
         ));
         jScrollPane2.setViewportView(claimsTable);
 
-        confirmButton.setBackground(new java.awt.Color(0, 204, 102));
-        confirmButton.setText("Confirm");
+        choice1btn.setText("jButton1");
 
-        declineButton.setBackground(new java.awt.Color(255, 153, 153));
-        declineButton.setText("Decline");
-
-        saveButton.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        saveButton.setText("Save");
+        choice2btn.setText("jButton2");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -179,40 +192,28 @@ public class ClaimActionForm extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(saveButton, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel7)
+                    .addComponent(jLabel6)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel7)
-                            .addComponent(jLabel6)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel5)
-                                .addGap(49, 49, 49)
-                                .addComponent(status, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 52, Short.MAX_VALUE)
-                                .addComponent(confirmButton)
-                                .addGap(18, 18, 18)
-                                .addComponent(declineButton)
-                                .addGap(40, 40, 40))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel3)
-                                            .addComponent(jLabel4))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED))
-                                    .addComponent(jLabel1)
-                                    .addComponent(jLabel2))
-                                .addGap(12, 12, 12)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(carPrice, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(rankComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(damageCost, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(customerId, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(240, 240, 240))
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.LEADING, 0, 0, Short.MAX_VALUE)
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 422, Short.MAX_VALUE)))
-                        .addGap(300, 300, 300))))
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel1)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel5))
+                        .addGap(12, 12, 12)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(carPrice, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(damageCost, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(customerId, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(status, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.LEADING, 0, 0, Short.MAX_VALUE)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 422, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(choice1btn)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(choice2btn)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -231,24 +232,20 @@ public class ClaimActionForm extends javax.swing.JFrame {
                     .addComponent(damageCost, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(rankComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
                     .addComponent(status, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(declineButton)
-                    .addComponent(confirmButton))
+                    .addComponent(jLabel5))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel6)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel7)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(35, 35, 35)
-                .addComponent(saveButton, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(choice1btn)
+                    .addComponent(choice2btn))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -257,23 +254,20 @@ public class ClaimActionForm extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField carPrice;
+    private javax.swing.JButton choice1btn;
+    private javax.swing.JButton choice2btn;
     private javax.swing.JTable claimsTable;
-    private javax.swing.JButton confirmButton;
     private javax.swing.JTextField customerId;
     private javax.swing.JTextField damageCost;
-    private javax.swing.JButton declineButton;
     private javax.swing.JTextArea description;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JComboBox rankComboBox;
-    private javax.swing.JButton saveButton;
     private javax.swing.JTextField status;
     // End of variables declaration//GEN-END:variables
 }

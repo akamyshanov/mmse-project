@@ -7,8 +7,6 @@ package insurancecompany;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
 
 /**
  *
@@ -25,7 +23,8 @@ public class StorageBroker {
         populateLists();
     }
 
-    private Customer getCustomer(int id, String password) {
+
+    public Customer getCustomer(int id, String password) {
         Customer customer = customerList.get(id);
         if (customer == null || !customer.checkPassword(password)) {
             return null;
@@ -74,7 +73,7 @@ public class StorageBroker {
                     c.getCarPrice(),
                     c.getDamageCost(),
                     c.getDescription(),
-                    c.getCategory(),
+                    c.getRank(),
                     c.getStatus());
         }
         
@@ -82,10 +81,11 @@ public class StorageBroker {
         return status;
     }
     
-    public Boolean addClaim(int customerId, String password, int damageCost, String description) {
+
+    public int addClaim(int customerId, String password, int damageCost, String description) {
         Customer customer = getCustomer(customerId, password);
         if (customer == null) {
-            return false;
+            return -1;
         }
         int id = claimList.size();
         
@@ -93,12 +93,14 @@ public class StorageBroker {
         
         System.out.println(getStatus());
         
-        return true;
+        return id;
     }
     
+
     public Claim getClaim(int id) {
-        return null;
+        return claimList.get(id);
     }
+
 
     public int addCustomer(String name, String surname, String email, String pwd, String carModel, int carPrice) {
         int id = customerList.size();
@@ -108,6 +110,7 @@ public class StorageBroker {
         return id;
     }
     
+
     public ArrayList<Claim> getClaimsByCustomerId(int customerId){
         ArrayList<Claim> claims = new ArrayList<Claim>();
         for (Claim cl : claimList.values()) {
@@ -117,10 +120,8 @@ public class StorageBroker {
         return claims;                 
     }
     
-    public ArrayList<Payment> getPayments(){
-        return paymentList;
-    }
     
+
 
     public ArrayList<Claim> getClaims(Employee employee) {
         ArrayList<Claim> claimList = new ArrayList<Claim>();
@@ -152,15 +153,24 @@ public class StorageBroker {
         return claimList;
     }
     
+
     public void updateClaim(Claim claim) {
         claimList.put(claim.getId(), claim);
     }
     
-    public void addPayment(int customerId, int claimId, int amount){
-        int index = paymentList.size();
-        paymentList.add(new Payment(paymentList.size(), customerId, claimId, "Handels", 132789643, amount));
+
+    public int addPayment(int customerId, int claimId, int amount){
+        int id = paymentList.size();
+        paymentList.add(new Payment(id, customerId, claimId, amount));
+        return id;
     }
 
+
+    public ArrayList<Payment> getPayments(){
+        return paymentList;
+    }
+    
+ 
     public Employee getEmployee(int EmployeeId, String pwd){
         Employee emp = employeeList.get(EmployeeId);
         if(emp == null || !emp.checkPassword(pwd)) {
@@ -171,11 +181,19 @@ public class StorageBroker {
         }
     }
 
+    public int addEmployee(String name, String surname, Employee.Department dept, String pwd, Employee.Rank rank){
+     
+        int id = employeeList.size();
+        employeeList.put(id, new Employee(id, name, surname, dept, pwd, rank));
+        return id;
+    }
+
+    
     private void populateLists() {
 
-        employeeList.put(employeeList.size(), new Employee(employeeList.size(), "Peter", "Sjodin", Employee.Department.CarDamage, "12345", Employee.Rank.High));
-        employeeList.put(employeeList.size(), new Employee(employeeList.size(), "Markus", "Hidell", Employee.Department.CarDamage, "12345", Employee.Rank.Low));
-        employeeList.put(employeeList.size(), new Employee(employeeList.size(), "Mihhail", "Matskin", Employee.Department.Finance, "12345", Employee.Rank.High));
+        addEmployee("Peter", "Sjodin", Employee.Department.CarDamage, "12345", Employee.Rank.High);
+        addEmployee("Markus", "Hidell", Employee.Department.CarDamage, "12345", Employee.Rank.Low);
+        addEmployee("Mihhail", "Matskin", Employee.Department.Finance, "12345", Employee.Rank.High);
         
         addCustomer("First", "Customer", "123@kth.se", "12345", "Lada Kalina", 200);
         addCustomer("Second", "Customer", "123@kth.se", "12345", "Lada Kalina", 200);

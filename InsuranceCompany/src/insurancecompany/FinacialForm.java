@@ -44,13 +44,10 @@ public class FinacialForm extends javax.swing.JFrame {
         model.addColumn("Payment ID");
         model.addColumn("Customer Id");
         model.addColumn("Claim Id");
-        model.addColumn("Payment Status");
-        model.addColumn("Bank");
-        model.addColumn("Account");
         model.addColumn("amount");
 
         for (Payment p : payments) {
-            model.addRow(new Object[]{p.getId(), p.getCustomerId(), p.getClaimId(), p.getStatus(), p.getBank(), p.getAccount(), p.getAmount()});
+            model.addRow(new Object[]{p.getId(), p.getCustomerId(), p.getClaimId(), p.getAmount()});
         }
     }
 
@@ -68,7 +65,7 @@ public class FinacialForm extends javax.swing.JFrame {
         table = new javax.swing.JTable();
         button = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel1.setText("List of Paiments");
