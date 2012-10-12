@@ -56,8 +56,11 @@ public class ClaimActionHandler {
             case Ranked:
                 claim.setStatus(choice1 ? Claim.Status.Confirmed : Claim.Status.Declined);
                 if(choice1) {
-                    storage.addPayment(claim.getCustomerId(), claim.getId(), claim.getDamageCost());
+                    String billingInfo = AutomaticCustomerEmulator.sendForm();
+                    storage.addPayment(claim.getCustomerId(), claim.getId(), claim.getDamageCost(), billingInfo);                    
                 }
+                else
+                    AutomaticCustomerEmulator.sendMail("Your claim was denied");
                 JOptionPane.showMessageDialog(form, "The claim has been " + (choice1 ? "confirmed" : "declined"));
                 break;
             default:

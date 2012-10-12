@@ -18,7 +18,7 @@ public class AutomaticCustomerEmulator {
     }
     
     public static String sendForm(){
-        return "this is filled out form";
+        return "Bank and account details";
     }
         
     public static void sendMail(String mail){

@@ -44,10 +44,13 @@ public class FinacialForm extends javax.swing.JFrame {
         model.addColumn("Payment ID");
         model.addColumn("Customer Id");
         model.addColumn("Claim Id");
+        model.addColumn("Payment Status");
+        model.addColumn("Account");
         model.addColumn("amount");
+        
 
         for (Payment p : payments) {
-            model.addRow(new Object[]{p.getId(), p.getCustomerId(), p.getClaimId(), p.getAmount()});
+            model.addRow(new Object[]{p.getId(), p.getCustomerId(), p.getClaimId(), p.getStatus(), p.getBillingInfo(), p.getAmount()});
         }
     }
 
@@ -67,7 +70,7 @@ public class FinacialForm extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18));
         jLabel1.setText("List of Paiments");
 
         table.setModel(new javax.swing.table.DefaultTableModel(
@@ -95,21 +98,20 @@ public class FinacialForm extends javax.swing.JFrame {
                         .addGap(36, 36, 36)
                         .addComponent(jLabel1))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(26, 26, 26)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 495, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(34, 34, 34)
-                        .addComponent(button, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(48, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 597, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(button, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(26, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(35, 35, 35)
                 .addComponent(jLabel1)
-                .addGap(33, 33, 33)
+                .addGap(32, 32, 32)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(29, 29, 29)
+                .addGap(30, 30, 30)
                 .addComponent(button, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(40, Short.MAX_VALUE))
         );

@@ -159,9 +159,9 @@ public class StorageBroker {
     }
     
 
-    public int addPayment(int customerId, int claimId, int amount){
+    public int addPayment(int customerId, int claimId, int amount, String billingInfo){
         int id = paymentList.size();
-        paymentList.add(new Payment(id, customerId, claimId, amount));
+        paymentList.add(new Payment(id, customerId, claimId, amount, billingInfo));
         return id;
     }
 
@@ -210,13 +210,13 @@ public class StorageBroker {
         claim2.rank(Claim.Rank.Complex);
         claim2.setStatus(Claim.Status.Confirmed);
         claimList.put(claim2.getId(), claim2);         
-        addPayment(0, claim2.getId(), claim2.getDamageCost());
+        addPayment(0, claim2.getId(), claim2.getDamageCost(), "Nordea: 8485 4564 345");
         
         Claim claim3 = new Claim(claimList.size(), 0, 200, 80, "just a little bit");
         claim3.rank(Claim.Rank.Complex);
         claim3.setStatus(Claim.Status.Confirmed);
         claimList.put(claim3.getId(), claim3);         
-        addPayment(0, claim3.getId(), claim3.getDamageCost());
+        addPayment(0, claim3.getId(), claim3.getDamageCost(), "Swedbank: 90765 345");
         
         
 
