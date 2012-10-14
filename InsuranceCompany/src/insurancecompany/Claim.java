@@ -57,13 +57,6 @@ public class Claim {
         this.status = status;
     }
     
-    public static ArrayList<String> getListOfRanks(){
-        ArrayList<String> rankArray = new ArrayList<String>();
-        for (Claim.Rank rank : Claim.Rank.values())
-            rankArray.add(rank.toString());
-        return rankArray;
-    }
-    
     public enum Rank
     {
         Undefined,

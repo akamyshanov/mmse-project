@@ -12,10 +12,6 @@ import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -25,9 +21,6 @@ import static org.junit.Assert.*;
  */
 public class ClaimActionHandlerTest {
     
-    public ClaimActionHandlerTest() {
-    }    
-    
     //this private class is required for the test
     private class UpdateListener implements ActionListener {
 
@@ -35,10 +28,8 @@ public class ClaimActionHandlerTest {
         public void actionPerformed(ActionEvent e) {
             //updateClaims();
         }
-    }
-    
-    
-    
+    }  
+       
 
     @Test
     public void testUpdateClaim() {
