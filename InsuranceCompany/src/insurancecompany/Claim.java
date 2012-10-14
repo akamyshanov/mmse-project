@@ -35,14 +35,14 @@ public class Claim {
     public Rank getRank() {
         return rank;
     }
-
-    public void setCategory(Rank category) {
-        this.rank = category;
-    }
     
     public Status getStatus()
     {
         return this.status;
+    }
+    
+    public void setCategory(Rank category) {
+        this.rank = category;
     }
 
     public void rank(Rank rank) {

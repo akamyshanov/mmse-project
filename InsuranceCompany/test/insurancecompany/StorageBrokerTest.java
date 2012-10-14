@@ -154,7 +154,7 @@ public class StorageBrokerTest {
         testAddClaim();
 
         Claim claim = instance.getClaim(claims.get(claims.size() == 1 ? 0 : (random.nextInt(claims.size() - 1))));
-        int id = instance.addPayment(claim.getCustomerId(), claim.getId(), claim.getDamageCost());
+        int id = instance.addPayment(claim.getCustomerId(), claim.getId(), claim.getDamageCost(), "Nordea: 235425 648");
         
         ArrayList<Payment> payments = instance.getPayments();
         

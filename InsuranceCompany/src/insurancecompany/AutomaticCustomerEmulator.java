@@ -11,14 +11,19 @@ package insurancecompany;
 public class AutomaticCustomerEmulator {
     private static int mailCount;
     private static int smsCount;
+    private static int formCount;
+    public static String defaultAnswer;
     
     public AutomaticCustomerEmulator(){
         mailCount = 0;
         smsCount = 0;
+        formCount = 0;
+        defaultAnswer = "Aaccount details from robot";
     }
     
     public static String sendForm(){
-        return "Bank and account details";
+        formCount++;
+        return defaultAnswer;
     }
         
     public static void sendMail(String mail){
@@ -27,6 +32,14 @@ public class AutomaticCustomerEmulator {
     
     public void sendSms(String sms){
         smsCount++;
+    }
+    
+    public static int getMailCount(){
+        return mailCount;
+    }
+    
+    public static int getFormCount(){
+        return formCount;
     }
 
 }
